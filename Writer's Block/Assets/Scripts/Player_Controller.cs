@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Controller : MonoBehaviour {
-    //Animator anim;
+    Animator anim;
     GameObject interactable;
     FieldOfView fov;
     private Rigidbody2D rb;
@@ -12,8 +12,8 @@ public class Player_Controller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         interactable = GameObject.FindGameObjectWithTag("Interactable");
-        //anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        anim = this.GetComponent<Animator>();
+        rb = this.GetComponent<Rigidbody2D>();
         fov = this.GetComponent<FieldOfView>();
 	}
 	
@@ -25,20 +25,20 @@ public class Player_Controller : MonoBehaviour {
 
     void Movement()
     {
-        //anim.SetInteger("State", 1);
-
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isRunning", false);
         if (Input.GetKey(KeyCode.D))
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                //anim.SetInteger("State", 2);
-                transform.Translate(Vector2.right * 3 * Time.deltaTime / 2);
+                anim.SetBool("isRunning", true);
+                transform.Translate(Vector2.right * 5 * Time.deltaTime / 2);
                 transform.eulerAngles = new Vector2(0, 0);
             }
             else
             {
-                //anim.SetInteger("State", 0);
-                transform.Translate(Vector2.right * 2 * Time.deltaTime / 2);
+                anim.SetBool("isWalking", true);
+                transform.Translate(Vector2.right * 3 * Time.deltaTime / 2);
                 transform.eulerAngles = new Vector2(0, 0);
             }
         }
@@ -47,14 +47,14 @@ public class Player_Controller : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                //anim.SetInteger("State", 2);
-                transform.Translate(Vector2.right * 3 * Time.deltaTime / 2);
+                anim.SetBool("isRunning", true);
+                transform.Translate(Vector2.right * 5 * Time.deltaTime / 2);
                 transform.eulerAngles = new Vector2(0, 180);
             }
             else
             {
-                //anim.SetInteger("State", 0);
-                transform.Translate(Vector2.right * 2 * Time.deltaTime / 2);
+                anim.SetBool("isWalking", true);
+                transform.Translate(Vector2.right * 3 * Time.deltaTime / 2);
                 transform.eulerAngles = new Vector2(0, 180);
             }
         }
