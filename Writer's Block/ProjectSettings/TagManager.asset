@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Interactable
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -38,14 +39,14 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Background
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
+  - name: Background
     uniqueID: 1114502323
     locked: 0
-  - name: Background
+  - name: Foreground
     uniqueID: 3615142957
     locked: 0

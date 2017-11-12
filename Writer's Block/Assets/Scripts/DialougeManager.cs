@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class DialougeManager : MonoBehaviour {
-    public Text nameText;
+    public Text nameText; 
     public Text dialougeText;
     public Player_Controller player;
     public Animator anim;
+    public static bool end = false;
 
     private Queue<string> sentences;
 
@@ -16,8 +17,12 @@ public class DialougeManager : MonoBehaviour {
 
     public void StartDialouge(Dialouge dialouge)
     {
+        end = false;
+        // Open Dialouge Box
         anim.SetBool("IsOpen", true);
+        // Name of the NPC or Interactable object
         nameText.text = dialouge.guy;
+        // Clear old sentences so old sentences are never displayed
         sentences.Clear();
 
         foreach (string sentence in dialouge.sentences)
@@ -28,18 +33,18 @@ public class DialougeManager : MonoBehaviour {
         DisplayNextSentence();
     }
 
-    public bool DisplayNextSentence()
+    public void DisplayNextSentence()
     {
         if(sentences.Count == 0)
         {
             EndDialouge();
-            return false;
+            Debug.Log("Called");
         }
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-        return true;
     }
+    // This coroutine makes sentences display letter by letter
     IEnumerator TypeSentence(string sentence)
     {
         dialougeText.text = "";
@@ -54,5 +59,6 @@ public class DialougeManager : MonoBehaviour {
     {
             anim.SetBool("IsOpen", false);
             Debug.Log("End of Conversation");
+            end = true;
     }
 }

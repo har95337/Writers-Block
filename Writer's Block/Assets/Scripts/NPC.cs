@@ -14,10 +14,14 @@ public class NPC : Interactable {
             FindObjectOfType<DialougeManager>().StartDialouge(dialouge);
             started = true;
         } else{
-            if(FindObjectOfType<DialougeManager>().DisplayNextSentence() == true)
-            {} else
+            if(DialougeManager.end == false)
             {
-                started = false;
+                FindObjectOfType<DialougeManager>().DisplayNextSentence();
+                Debug.Log("False Called");
+            } else if(DialougeManager.end == true)
+            {
+                started = false; // reset dialouge
+                Debug.Log("True Called");
             }
         }
     }

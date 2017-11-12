@@ -10,8 +10,8 @@ public class CameraFollow : MonoBehaviour {
     public Vector3 velocity = Vector3.zero;
     void LateUpdate()
     {
-        Vector3 desiredPos = player.position + offset;
+		Vector3 desiredPos = player.position + offset;
         Vector3 smoothPos = Vector3.SmoothDamp(transform.position, desiredPos, ref velocity,smoothSpeed);
-        transform.position = player.position + offset;
+		transform.position = player.position + offset;
     }
 }
