@@ -51,4 +51,10 @@ public class Monster : MonoBehaviour
             Debug.Log("Attempting to follow player");
         }
     }
+    
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Player")
+            Destroy(gameObject);
+    }
 }
