@@ -55,6 +55,20 @@ public class Monster : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")
-            Destroy(gameObject);
-    }
+		{
+			Debug.Log("Colided with player");
+			GameObject.Find("FadeImage").GetComponent<Fade>().FadeMe();
+			StartCoroutine(Wait());  
+    	}
+	}
+
+	//waits for fade and then destroys monster and 'kills' the friend
+	IEnumerator Wait()
+	{
+		yield return new WaitForSecondsRealtime(1.0f);
+		Destroy(gameObject);
+		Transform trans = GameObject.Find("Interactable").GetComponent<Transform>();
+		trans.Rotate(0, 0, 90);
+		trans.position = new Vector3(trans.position.x, trans.position.y - 0.3f, trans.position.z);
+	}
 }
