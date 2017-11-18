@@ -9,19 +9,21 @@ public class NPC : Interactable {
 
     public override void Interact()
     {
-        if(started == false)
+        DialougeManager currentDialouge = FindObjectOfType<DialougeManager>();
+        if (started == false)
         {
-            FindObjectOfType<DialougeManager>().StartDialouge(dialouge);
+            Debug.Log("Dialouge Has Started");
+            currentDialouge.StartDialouge(dialouge);
             started = true;
         } else{
             if(DialougeManager.end == false)
             {
-                FindObjectOfType<DialougeManager>().DisplayNextSentence();
-                Debug.Log("False Called");
+                currentDialouge.DisplayNextSentence();
+                Debug.Log("Dialouge is Continuing");
             } else if(DialougeManager.end == true)
             {
                 started = false; // reset dialouge
-                Debug.Log("True Called");
+                Debug.Log("Dialouge is Ending");
             }
         }
     }

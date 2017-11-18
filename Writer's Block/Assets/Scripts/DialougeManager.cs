@@ -38,7 +38,7 @@ public class DialougeManager : MonoBehaviour {
         if(sentences.Count == 0)
         {
             EndDialouge();
-            Debug.Log("Called");
+            return;
         }
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
@@ -58,7 +58,7 @@ public class DialougeManager : MonoBehaviour {
     void EndDialouge()
     {
             anim.SetBool("IsOpen", false);
-            Debug.Log("End of Conversation");
             end = true;
+            return;
     }
 }

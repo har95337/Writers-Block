@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour {
 
     public float smoothSpeed = 0.1f;
     public Vector3 offset;
-    public Vector3 velocity = Vector3.zero;
+    public Vector3 velocity = Vector3.up;
     void LateUpdate()
     {
 		Vector3 desiredPos = player.position + offset;
