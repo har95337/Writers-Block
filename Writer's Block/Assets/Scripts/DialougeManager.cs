@@ -57,8 +57,8 @@ public class DialougeManager : MonoBehaviour {
 
     void EndDialouge()
     {
-            anim.SetBool("IsOpen", false);
-            end = true;
-            return;
+        anim.SetBool("IsOpen", false);
+        end = true;
+        return;
     }
 }
